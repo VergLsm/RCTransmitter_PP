@@ -21,6 +21,65 @@
 2. 连接SWD接口。
 3. 下载固件到GD32。
 
+# 出厂主芯片引脚功能
+
+## 与无线芯片BK2425连接
+
+软件模拟SPI
+
+功能 | 引脚 
+-----|-----
+CE   | PB7
+CS   | PB6
+SCK  | PB5
+MOSI | PB4
+MISO | PB3
+IRQ  | ---
+
+## 各引脚功能
+
+功能        | 引脚     | 注
+------------|----------|----
+VR4         | PA0
+k1          | PA1      | 此处共同使用PA1，ADC判断具体哪个按键被按下
+k2          | PA1
+k3          | PA1
+k4          | PA1
+BT_VDD1     | PA2
+BT_EN       | PA3
+VR1         | PA4
+VR2         | PA5
+k5          | PA6      | 此处共同使用PA6，ADC判断具体哪个按键被按下
+k6          | PA6
+k7          | PA6
+k8          | PA6
+BAT_DET     | PA7      | 电池电压检测
+UART3_Tx    | PA8      | 蓝牙
+UART1_Tx    | PA9      | 2.4G模块
+UART1_Rx    | PA10     | 2.4G模块
+LED_5_6     | PA11     | 小板
+PWR-DET     | PA12     | 电源按钮检测
+PWR-SW      | PA15     | 电源开关
+UART3_Rx    | PB0      | 蓝牙
+VR3         | PB1
+sw_T        | PB2      | 油门设定开关，归中高电平，不归中低电平
+bk2425      | PB3-7
+LED_A_EN_B  | PB8      | 大板，蓝色灯组使能
+LED_A_EN_R  | PB9      | 大板，红色灯组使能
+buzzer      | PB10
+LED_B_EN_B  | PB11     | 小板，蓝色灯组使能
+LED_B_EN_R  | PB12     | 小板，红色灯组使能
+LED_11_12   | PB13     | 小板
+LED_9_10    | PB14     | 小板
+LED_7_8     | PB15     | 小板
+LED_L1L4    | PC13     | 大板左，LED1和LED4，test1
+LED_L3L6    | PC14     | 大板中，LED3和LED6
+LED_L2L5    | PC15     | 大板右，LED2和LED5，test2
+CHRG        | PF6      | 小板
+s-soc       | PF7      | 小板，直通小板音频芯片
+
+注：7个LED灯位都是由红蓝两种LED组成，大板和小板分别有引脚控制两种颜色使能，点亮LED需要使能对应颜色并开启对应LED，例如，点亮大板上第一个LED蓝灯，需要使能LED_A_EN_B和LED_L1L4。低电平开启/使能。
+
 # 硬件改装步骤
 
 ## PPM输出
