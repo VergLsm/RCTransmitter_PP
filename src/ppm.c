@@ -6,7 +6,9 @@
 #include "rc.h"
 #include "variant.h"
 #include "gpio.h"
+#ifdef RCT_LCD
 #include "lcd.h"
+#endif
 
 #define TIMER_PPM TIMER15
 #define TIMER_PPM_CLK RCU_TIMER15
@@ -78,13 +80,17 @@ void rc_ppm_init() {
 void rc_ppm_enable() {
     dma_channel_enable(DMA_CH2);
     timer_enable(TIMER_PPM);
+#ifdef RCT_LCD
     Picture_display(output_ppm_x, 0, 8, 8, ppm);
+#endif
 }
 
 void rc_ppm_disable() {
     dma_channel_disable(DMA_CH2);
     timer_disable(TIMER_PPM);
+#ifdef RCT_LCD
     Picture_display(output_ppm_x, 0, 8, 8, noppm);
+#endif
 }
  
 void rc_ppm_update(void) {

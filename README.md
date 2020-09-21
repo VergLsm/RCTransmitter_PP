@@ -91,6 +91,22 @@ s-soc       | PF7      | 小板，直通小板音频芯片
 此处改动较大，小板需要去掉，暂时省略。
 
 # 编译步骤
+
+1. 安装python3环境
+2. 使用pip安装platformio
+```
+pip3 install platformio
+```
+3. 编译
+```
+pio run
+```
+
+注意：第一次编译第3步会失败，因为官方没有GD32F130的支持，解决办法如下，
+- 首先找到PlatformIO目录(Windows: `C:\Users\<user>\.platformio`, Unix/Max: `/home/<user>/.platformio`)
+- 进入`packages`目录
+- 把项目根目录里的`framework-spl.zip`解压到`packages`目录，覆盖原有的`framework-spl`目录即可
+
 请参考以下[pio-gd32f130c6](https://github.com/maxgerhardt/pio-gd32f130c6)仓库 README 原文
 
 ## Installation

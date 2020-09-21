@@ -6,7 +6,9 @@
 #include "gd32f1x0_libopt.h"
 #include "gpio.h"
 #include "key.h"
+#ifdef RCT_LCD
 #include "lcd.h"
+#endif
 #include "ppm.h"
 #include "proc.h"
 #include "radio.h"
@@ -31,7 +33,9 @@ void setup() {
     rc_adc_init();
     rc_ppm_init();
     rc_radio_init();
+#ifdef RCT_LCD
     lcd_init();
+#endif
     rc_init();
 }
 
@@ -60,6 +64,8 @@ void loop() {
     {
         counter_main.output = 0;
         sys_status.uptime++;
+
+#ifdef RCT_LCD        
         draw_uptime(sys_status.uptime);
         // print_str("Test string for UART! \r\n");
         // for (size_t i = 0; i < ADC_BUFF_SIZE; i++) {
@@ -80,6 +86,7 @@ void loop() {
         // print_str("\r\n");
 
         lcd_proc();
+#endif
 
         for (size_t i = 0; i < RC_CHANNEL_LENGTH; i++) {
             itoa(rc_channel_data[i], result, 10);

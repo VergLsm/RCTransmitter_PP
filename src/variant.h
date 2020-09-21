@@ -21,7 +21,11 @@
 // PPM
 #define GPIO_CLK_PPM   				    RCU_GPIOF
 #define GPIO_POR_PPM 				    GPIOF
+#ifdef RCT
+#define GPIO_PIN_PPM    			    GPIO_PIN_7
+#else
 #define GPIO_PIN_PPM    			    GPIO_PIN_6
+#endif
 
 #define GPIO_CLK_BT_VDD   				RCU_GPIOA
 #define GPIO_POR_BT_VDD 				GPIOA

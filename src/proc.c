@@ -3,7 +3,9 @@
 #include "adc.h"
 #include "gpio.h"
 #include "key.h"
+#ifdef RCT_LCD
 #include "lcd.h"
+#endif
 #include "ppm.h"
 #include "rc.h"
 #include "systick.h"
@@ -90,7 +92,9 @@ void proc_key_power(void) {
                 rc_led_g_disable(RC_LED_A_EN_B);
                 rc_led_g_disable(RC_LED_A_EN_R);
                 rc_gpio_reset(RC_POWER);
+#ifdef RCT_LCD
                 LCD_clear();
+#endif
                 while (1) {
                 }
             }
@@ -99,7 +103,9 @@ void proc_key_power(void) {
         if (counter_proc.sysStatus == RC_SYS_SHUTDOWNING) {
             counter_proc.sysStatus = RC_SYS_RUNING;
             counter_proc.key[8] = 0;
+#ifdef RCT_LCD
             rc_led_toggle(RC_LED_LCD);
+#endif
         }
 
         if (counter_proc.sysStatus == RC_SYS_BOOTING) {

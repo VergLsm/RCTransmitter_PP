@@ -54,7 +54,10 @@ void rc_led_init(void) {
     rc_gpio_init(RC_LED_A_EN_B);
     rc_gpio_init(RC_LED_A_EN_R);
 
+#ifdef RCT_LCD
     rc_gpio_init(RC_LED_LCD);
+    rc_led_off(RC_LED_LCD);
+#endif
 
     rc_led_off(RC_LED_1);
     rc_led_off(RC_LED_2);
@@ -63,7 +66,6 @@ void rc_led_init(void) {
     rc_led_g_enable(RC_LED_A_EN_B);
     rc_led_g_disable(RC_LED_A_EN_R);
 
-    rc_led_off(RC_LED_LCD);
 
     rc_gpio_init(RC_BT_VDD);
     // rc_gpio_init(RC_BT_EN);

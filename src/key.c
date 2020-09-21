@@ -4,7 +4,9 @@
 
 #include "gd32f1x0.h"
 #include "gpio.h"
+#ifdef RCT_LCD
 #include "lcd.h"
+#endif
 #include "ppm.h"
 #include "radio.h"
 #include "rc.h"
@@ -71,13 +73,17 @@ void rc_keyProc_3() {
     if (1000 < rc_channel_data[5]) {
         rc_channel_data[5] -= 500;
     }
+#ifdef RCT_LCD
     draw_chan(5, rc_channel_data[5]);
+#endif
 }
 void rc_keyProc_4() {
     if (rc_channel_data[5] < 2000) {
         rc_channel_data[5] += 500;
     }
+#ifdef RCT_LCD
     draw_chan(5, rc_channel_data[5]);
+#endif
 }
 void rc_keyProc_5() {}
 void rc_keyProc_6() {
@@ -99,13 +105,17 @@ void rc_keyProc_7() {
     if (rc_channel_data[4] < 2000) {
         rc_channel_data[4] += 500;
     }
+#ifdef RCT_LCD
     draw_chan(4, rc_channel_data[4]);
+#endif
 }
 void rc_keyProc_8() {
     if (1000 < rc_channel_data[4]) {
         rc_channel_data[4] -= 500;
     }
+#ifdef RCT_LCD
     draw_chan(4, rc_channel_data[4]);
+#endif
 }
 
 void (*keyProcArr[])(void) = {rc_keyProc_1, rc_keyProc_2, rc_keyProc_3,

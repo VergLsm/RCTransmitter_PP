@@ -1,7 +1,9 @@
 #include "radio.h"
 
 #include "gd32f1x0.h"
+#ifdef RCT_LCD
 #include "lcd.h"
+#endif
 #include "nrf.h"
 #include "rc.h"
 #include "variant.h"
@@ -62,13 +64,17 @@ uint8_t nrf_status(void) {
 
 void rc_radio_enable(void) {
     nrf_tx_mode();
+#ifdef RCT_LCD
     Picture_display(output_signal_x, 0, 9, 8, signal);
+#endif
 }
 void rc_radio_disable(void) {
     nrf_ce_low();
     NRF_Write_Reg(NRF_WRITE_REG + NRF_REGADD_CONFIG,
                   MASK_RX_DR | MASK_TX_DS | MASK_MAX_RT | MASK_EN_CRC);
+#ifdef RCT_LCD
     Picture_display(output_signal_x, 0, 9, 8, nosignal);
+#endif
 }
 
 void rc_radio_tx(void) {
